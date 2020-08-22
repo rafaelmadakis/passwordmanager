@@ -4,13 +4,15 @@ import br.com.password.manager.api.exceptionhandler.Problem;
 import br.com.password.manager.api.model.DadoModel;
 import br.com.password.manager.api.model.input.DadoInput;
 import io.swagger.annotations.*;
+import org.springframework.data.domain.Pageable;
 import org.springframework.hateoas.CollectionModel;
+import org.springframework.hateoas.PagedModel;
 
 @Api(tags = "Dados")
 public interface DadoControllerOpenApi {
 
-    @ApiOperation("lista de dados")
-    CollectionModel<DadoModel> listar();
+    @ApiOperation("Lista as cidades")
+    public CollectionModel<DadoModel> listar();
 
     @ApiOperation("busca de um dado por ID")
     @ApiResponses({
@@ -18,7 +20,7 @@ public interface DadoControllerOpenApi {
             @ApiResponse(code = 404, message = "Dado não encontrado", response = Problem.class)
     })
     public DadoModel buscar(@ApiParam(value = "ID de um dado", example = "1", required = true)
-                                                          Long dadoId);
+                                    Long dadoId);
 
     @ApiOperation("Cadastra um dado")
     @ApiResponses({
@@ -34,17 +36,17 @@ public interface DadoControllerOpenApi {
             @ApiResponse(code = 404, message = "Dado não encontrada", response = Problem.class)
     })
     public DadoModel atualizar(@ApiParam(value = "ID de um dado", example = "1")
-                                         Long dadoId,
-                                 @ApiParam(name = "corpo", value = "Representação de um novo dado com novas informações",
-                                         required = true)
-                                         DadoInput dadoInput);
+                                       Long dadoId,
+                               @ApiParam(name = "corpo", value = "Representação de um novo dado com novas informações",
+                                       required = true)
+                                       DadoInput dadoInput);
 
     @ApiOperation("Exclui um dado")
     @ApiResponses({
             @ApiResponse(code = 204, message = "Dado excluído"),
             @ApiResponse(code = 404, message = "Dado não encontrada", response = Problem.class)
     })
-    public void remover(@ApiParam(value = "ID de um dado", example = "1", required = true)
+    void remover(@ApiParam(value = "ID de um dado", example = "1", required = true)
                                 Long dadoId);
 
 
