@@ -9,12 +9,8 @@ import br.com.password.manager.domain.model.Dado;
 import br.com.password.manager.domain.repository.DadoRepository;
 import br.com.password.manager.domain.service.CadastroDadoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.web.PageableDefault;
 import org.springframework.data.web.PagedResourcesAssembler;
 import org.springframework.hateoas.CollectionModel;
-import org.springframework.hateoas.PagedModel;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
@@ -39,7 +35,7 @@ public class DadoController implements DadoControllerOpenApi {
     @Autowired
     private DadoModelAssembler dadoModelAssembler;
 
-    @Autowired
+     @Autowired
     private PagedResourcesAssembler<Dado> pagedResourcesAssembler;
 
 
@@ -62,14 +58,21 @@ public class DadoController implements DadoControllerOpenApi {
     }
 
     @Override
-    public DadoModel adicionar(DadoInput dadoInput) {
-        return null;
+    @PostMapping
+    public DadoModel adicionar(@RequestBody DadoInput dadoInput) {
+        Dado dado = dadoInputDisassembler.toDomainObject(dadoInput);
+        dado = cadastroDado.salvar(dado);
+
+        return dadoModelAssembler.toModel(dado);
     }
+
 
     @Override
     public DadoModel atualizar(Long dadoId, DadoInput dadoInput) {
         return null;
     }
+
+
 
 //    @Override
 //    @PostMapping

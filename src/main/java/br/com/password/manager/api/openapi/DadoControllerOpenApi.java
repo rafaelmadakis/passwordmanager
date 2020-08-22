@@ -7,6 +7,9 @@ import io.swagger.annotations.*;
 import org.springframework.data.domain.Pageable;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.PagedModel;
+import org.springframework.web.bind.annotation.RequestBody;
+
+import javax.validation.Valid;
 
 @Api(tags = "Dados")
 public interface DadoControllerOpenApi {
@@ -28,7 +31,7 @@ public interface DadoControllerOpenApi {
     })
     public DadoModel adicionar(@ApiParam(name = "corpo", value = "Representação de um novo dado",
             required = true)
-                                       DadoInput dadoInput);
+                                            DadoInput dadoInput);
 
     @ApiOperation("Atualiza uma cidade por ID")
     @ApiResponses({
@@ -39,7 +42,7 @@ public interface DadoControllerOpenApi {
                                        Long dadoId,
                                @ApiParam(name = "corpo", value = "Representação de um novo dado com novas informações",
                                        required = true)
-                                       DadoInput dadoInput);
+                                        DadoInput dadoInput);
 
     @ApiOperation("Exclui um dado")
     @ApiResponses({

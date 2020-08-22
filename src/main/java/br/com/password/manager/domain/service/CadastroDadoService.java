@@ -16,10 +16,7 @@ public class CadastroDadoService {
 
     @Transactional
     public Dado salvar(Dado dado) {
-        Long infId = dado.getId();
-        Dado dado1 = buscarOuFalhar(infId);
-
-        return dadoRepository.save(dado);
+       return dadoRepository.save(dado);
     }
 
     @Transactional
