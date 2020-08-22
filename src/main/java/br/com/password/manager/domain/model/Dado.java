@@ -12,7 +12,7 @@ import javax.persistence.Id;
 @Data
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-public class Dados {
+public class Dado {
 
     @EqualsAndHashCode.Include
     @Id
