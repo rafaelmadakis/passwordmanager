@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 
 
 @Component
-public class CidadeInputDisassembler {
+public class DadoInputDisassembler {
 
     @Autowired
     private ModelMapper modelMapper;
