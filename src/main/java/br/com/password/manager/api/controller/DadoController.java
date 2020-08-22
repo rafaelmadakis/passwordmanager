@@ -68,8 +68,13 @@ public class DadoController implements DadoControllerOpenApi {
 
 
     @Override
-    public DadoModel atualizar(Long dadoId, DadoInput dadoInput) {
-        return null;
+    @PutMapping("/{dadoId}")
+    public DadoModel atualizar(@PathVariable  Long dadoId, @RequestBody DadoInput dadoInput) {
+        Dado dadoAtual = cadastroDado.buscarOuFalhar(dadoId);
+        dadoInputDisassembler.copyToDomainObject(dadoInput, dadoAtual);
+        dadoAtual = cadastroDado.salvar(dadoAtual);
+
+        return dadoModelAssembler.toModel(dadoAtual);
     }
 
 
