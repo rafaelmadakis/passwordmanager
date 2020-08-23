@@ -37,13 +37,10 @@ public class ResourceServerConfig extends WebSecurityConfigurerAdapter {
                 .and()
                 .csrf().disable();
 
-
-
-
     }
 
     @Bean
-    public PasswordEncoder passwordEncoder(){
+    public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
 
